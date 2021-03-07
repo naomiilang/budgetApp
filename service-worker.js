@@ -7,7 +7,7 @@ const FILES_TO_CACHE = [
     "./public/css/styles.css",
     "./public/js/index.js",
     "./public/js/idb.js",
-    "server.js"   
+    "server.js"
 ];
 
 //respond with caches resources
@@ -17,13 +17,23 @@ self.addEventListener('fetch', function (e) {
         caches.match(e.request).then(function (request) {
             if (request) {
                 //if cache avail, respond with cach
-                console.log( 'responding with cache : ' + e.request.url)
+                console.log('responding with cache : ' + e.request.url)
                 return request
             } else {
                 //if no cache, fetch req
                 console.log('file is not caches, fetching : ' + e.request.url)
                 return fetch(e.request)
             }
+        })
+    )
+})
+
+//cache resources
+self.addEventListener('install', function (e) {
+    e.waitUntil(
+        caches.open(CACHE_NAME).then(function (cache) {
+            console.log('installing cache : ' + CACHE_NAME)
+            return cache.addAll(FILES_TO_CACHE)
         })
     )
 })
