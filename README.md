@@ -6,7 +6,7 @@ With each transaction, a graph of user spending is generated to show trends in d
 
 ![alt text](readmeImage.png) 
 
-View the deployed heroku application here: 
+View the deployed heroku application here: https://afternoon-coast-65587.herokuapp.com/ 
 
 
 
