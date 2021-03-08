@@ -23,4 +23,12 @@ request.onsucess = function(event) {
 request.onerror = function(event) {
     //log error
     console.log(event.target.errorCode);
+};
+
+//function executed after submitting transaction
+function saveRecord(record) {
+    const transaction = db.transaction(['newTransaction'], 'readwrite');
+
+    const transactionObjectStore = transaction.objectStore('newTransaction');
+    transactionObjectStore.add(record);
 }
